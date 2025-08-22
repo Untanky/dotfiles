@@ -1,0 +1,26 @@
+{
+	"name": "snippets",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+					"all"
+				],
+				"path": "./all.json"
+			},
+			{
+				"language": [
+					"vue"
+				],
+				"path": "./vue.json"
+			},
+      {
+        "language": [
+          "go", "templ"
+        ],
+        "path": "./go.json"
+      }
+		]
+	}
+}
+

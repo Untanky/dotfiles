@@ -1,0 +1,59 @@
+{
+  "struct": {
+    "prefix": "tys",
+    "body": [
+      "type ${1:name} struct {",
+      "\t${2}",
+      "}"
+    ]
+  },
+  "interface": {
+    "prefix": "tyi",
+    "body": [
+      "type ${1:name} interface {",
+      "\t$2",
+      "}"
+    ]
+  },
+  "method": {
+    "prefix": "method",
+    "body": [
+      "func (${2:value} ${1:type}) ${3:name}() {",
+      "\t${4}",
+      "}"
+    ]
+  },
+  "func": {
+    "prefix": "func",
+    "body": [
+      "func ${1:name}() {",
+      "\t${2}",
+      "}"
+    ]
+  },
+  "checkErr": {
+    "prefix": "iferr",
+    "body": [
+      "if err != nil {",
+      "\t${1}",
+      "}"
+    ]
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for ${1:i} := ${2:0}; ${1:i} < ${3:v}; ${1:i}++ {",
+      "\t${5}",
+      "}"
+    ]
+  },
+  "for-range": {
+    "prefix": "forrange",
+    "body": [
+      "for ${3:_}, ${2:v} := range ${1:slice} {",
+      "\t${4}",
+      "}"
+    ]
+  }
+}
+

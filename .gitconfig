@@ -1,0 +1,24 @@
+[user]
+	email = lukaskingsmail@gmail.com
+	name = Lukas Grimm
+[core]
+	editor = nvim
+[diff]
+	tool = vscode
+	algorithm = histogram
+[difftool "vscode"]
+	cmd = "code --wait --diff  "
+[merge]
+	tool = vscode
+	conflictstyle = diff3
+[mergetool "vscode"]
+	cmd = "code --wait "
+[color]
+	ui = auto
+[push]
+	default = simple
+	autoSetupRemote = true
+[help]
+	autocorrect = 1
+[pull]
+	ff = only

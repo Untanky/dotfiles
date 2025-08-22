@@ -1,0 +1,37 @@
+{
+	"single-file-components": {
+		"prefix": "sfc",
+		"body": [
+			"<template>",
+      "",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "",
+      "</script>"
+		]
+	},
+  "props": {
+    "prefix": "props",
+    "body": [
+      "defineProps<{",
+      "\t${0}",
+      "}>();"
+    ]
+  },
+  "emits": {
+    "prefix": "emits",
+    "body": [
+      "defineEmits<{",
+      "\t${0}",
+      "}>();"
+    ]
+  },
+  "model": {
+    "prefix": "model",
+    "body": [
+      "const ${0:name} = defineModel<${1:type}>();"
+    ]
+  }
+}
+
