@@ -95,7 +95,7 @@ local function toggle_neotree(position)
         neotree.execute({ action = "close" })
       else
         -- If it's open but not focused → focus it
-        neotree.execute()
+        neotree.execute({})
       end
     else
       -- If it's open in a different position → reopen in new position
@@ -116,8 +116,11 @@ local mappings = {
   { "N",          "Nzzzv",            desc = "Previous search result and center" },
   { "Q",          "<nop>",            desc = "Disable Ex mode" },
 
-  -- telescope bindings
+  -- groups
   { "<leader>f",  group = "Find" },
+  { "<leader>g",  group = "Git" },
+
+  -- telescope bindings
   { "<leader>ff", builtin.find_files, desc = "Find files" },
   { "<leader>fg", builtin.git_files,  desc = "Find git files" },
   { "<leader>fl", builtin.live_grep,  desc = "Live grep" },
@@ -138,9 +141,16 @@ local mappings = {
     end,
     desc = "Toggle file explorer on the bottom"
   },
+  {
+    "<leader>gs",
+    function()
+      neotree.execute({ source = "git_status", position = "float" })
+    end,
+    desc = "Show git status"
+  },
 
-  { "<Down>",     mode = "i",         desc = "Next completion item" },
-  { "<Up>",       mode = "i",         desc = "Previous completion item" },
+  { "<Down>", mode = "i", desc = "Next completion item" },
+  { "<Up>",   mode = "i", desc = "Previous completion item" },
 }
 
 which_key.add(mappings)
@@ -165,4 +175,3 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
   end,
 })
-
