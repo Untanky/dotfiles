@@ -53,6 +53,8 @@ vim.opt.mouse = "a"
 local which_key = require('which-key')
 local builtin = require('telescope.builtin')
 local cmp = require('cmp')
+local neotree = require('neo-tree.command')
+local neotree_manager = require('neo-tree.sources.manager')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('user_lsp_attach', { clear = true }),
@@ -83,6 +85,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
+local function toggle_neotree(position)
+  local state = neotree_manager.get_state('filesystem')
+  if state and state.winid and vim.api.nvim_win_is_valid(state.winid) then
+    local current_position = state.current_position or "unknown"
+    if current_position == position then
+      -- If it's already open in the same position and focused → close
+      if vim.api.nvim_get_current_win() == state.winid then
+        neotree.execute({ action = "close" })
+      else
+        -- If it's open but not focused → focus it
+        neotree.execute()
+      end
+    else
+      -- If it's open in a different position → reopen in new position
+      neotree.execute({ action = "close" })
+      neotree.execute({ position = position, reveal = true })
+    end
+  else
+    -- If not open → open in requested position
+    neotree.execute({ position = position, reveal = true })
+  end
+end
+
 local mappings = {
   -- make editing nicer
   { "<C-d>",      "<C-d>zz",          desc = "Half page down and center" },
@@ -98,21 +123,46 @@ local mappings = {
   { "<leader>fl", builtin.live_grep,  desc = "Live grep" },
   { "<leader>fb", builtin.buffers,    desc = "Find buffers" },
 
+  -- neo tree bindings
+  {
+    "<leader>fs",
+    function()
+      toggle_neotree("left")
+    end,
+    desc = "Toggle file explorer on the left"
+  },
+  {
+    "<leader>fd",
+    function()
+      toggle_neotree("bottom")
+    end,
+    desc = "Toggle file explorer on the bottom"
+  },
+
   { "<Down>",     mode = "i",         desc = "Next completion item" },
   { "<Up>",       mode = "i",         desc = "Previous completion item" },
 }
 
 which_key.add(mappings)
 
--- local format_group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
---
--- vim.api.nvim_create_autocmd("BufWritePre", {
---   group = format_group,
---   callback = function()
---     vim.lsp.buf.format({ async = false })
---   end,
--- })
+local format_group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 
--- vim.api.nvim_create_autocmd("BufWritePre", {
---   group =
--- })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = format_group,
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function(args)
+    local state = neotree_manager.get_state('filesystem')
+    local is_open = state and state.winid and vim.api.nvim_win_is_valid(state.winid)
+    local skip_buffers = vim.bo[args.buf].buftype == ""
+    -- Skip special buffers
+    if is_open and skip_buffers then
+      neotree.execute({ action = "show", reveal = true })
+    end
+  end,
+})
+
