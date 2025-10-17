@@ -1,8 +1,6 @@
 local which_key = require('which-key')
 local builtin = require('telescope.builtin')
-local cmp = require('cmp')
 local neotree = require('neo-tree.command')
-local neotree_manager = require('neo-tree.sources.manager')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('user_lsp_attach', { clear = true }),
@@ -25,8 +23,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
       { '<leader>lr', vim.lsp.buf.rename,           desc = 'Rename' },
       { '<leader>lw', vim.lsp.buf.workspace_symbol, desc = 'Workspace Symbol' },
       { '<leader>ld', vim.diagnostic.open_float,    desc = 'Show Diagnostics' },
-      { '[d',         vim.diagnostic.goto_prev,     desc = 'Previous Diagnostic' },
-      { ']d',         vim.diagnostic.goto_next,     desc = 'Next Diagnostic' },
+      {
+        '<leader>h',
+        function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
+        end,
+        desc = 'Toggle Inlay Hints'
+      },
+      { '[d', vim.diagnostic.goto_prev, desc = 'Previous Diagnostic' },
+      { ']d', vim.diagnostic.goto_next, desc = 'Next Diagnostic' },
     }
 
     which_key.add(mappings)
@@ -34,23 +39,31 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local function toggle_neotree(position)
+  local neotree_manager = require('neo-tree.sources.manager')
   local state = neotree_manager.get_state('filesystem')
-  if state and state.winid and vim.api.nvim_win_is_valid(state.winid) then
+
+  local is_open = state and state.winid and vim.api.nvim_win_is_valid(state.winid)
+  if is_open then
     local current_position = state.current_position or "unknown"
     if current_position == position then
+      local is_current_window = vim.api.nvim_get_current_win() == state.winid
       -- If it's already open in the same position and focused → close
-      if vim.api.nvim_get_current_win() == state.winid then
-        neotree.execute({ action = "close" })
+      if is_current_window then
+        print("close")
+        neotree.execute({ action = "close", source = "filesystem" })
       else
+        print("focus")
         -- If it's open but not focused → focus it
-        neotree.execute({})
+        neotree.execute({ action = "focus" })
       end
     else
       -- If it's open in a different position → reopen in new position
+      print("reopening")
       neotree.execute({ action = "close" })
       neotree.execute({ position = position, reveal = true })
     end
   else
+    print("open")
     -- If not open → open in requested position
     neotree.execute({ position = position, reveal = true })
   end

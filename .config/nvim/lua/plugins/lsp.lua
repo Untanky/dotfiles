@@ -3,6 +3,7 @@ return {
   dependencies = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
+
   },
   config = function()
     require("mason").setup()
@@ -67,6 +68,20 @@ return {
       },
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     }
+
+    require('lspconfig').gopls.setup({
+      settings = {
+        gopls = {
+          hints = {
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            constantValues = true,
+            ignoredError = true,
+            parameterNames = true,
+          },
+        },
+      },
+    })
 
     lspconfig.vtsls.setup(vtsls_config)
   end

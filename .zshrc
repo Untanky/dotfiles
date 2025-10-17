@@ -70,7 +70,7 @@ ZSH_THEME="lukas"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew docker eza fzf git git-auto-fetch golang ssh)
+plugins=(brew direnv docker eza fzf git git-auto-fetch golang ssh)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,3 +121,4 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
+
