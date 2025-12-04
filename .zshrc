@@ -1,4 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
+ZSH_CUSTOM="$HOME/.config/zsh"
 
 ZSH_THEME="lukas"
 
