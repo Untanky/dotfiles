@@ -1,0 +1,7 @@
+brew "eza"
+brew "fzf"
+brew "neovim"
+brew "zoxide"
+brew "zsh-history-substring-searc"
+cask "font-monaspace"
+cask "ghostty"
