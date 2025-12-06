@@ -1,0 +1,7 @@
+font-family = Monaspace Argon Var Regular Medium
+font-family-bold = Monaspace Argon Var Regular Bold
+font-family-italic = Monaspace Argon Var Regular Medium Italic
+font-family-bold-italic = Monaspace Argon Var Regular Bold Italic
+theme = catppuccin-macchiato.conf
+keybind = super+shift+D=new_split:down
+macos-icon = glass
