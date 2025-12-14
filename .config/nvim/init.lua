@@ -5,3 +5,5 @@ require('config.lazy')
 require('config.colorscheme')
 require('config.settings')
 require('config.key-mapping')
+
+vim.lsp.enable({ "gopls" })

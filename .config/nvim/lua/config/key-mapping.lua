@@ -9,9 +9,10 @@ local mapping = {
   { "N",     "Nzzzv",   desc = "Previous search result and center" },
   -- { "Q"      "<nop>",   desc = "Disable Ex mode" },
 
-  -- find
-  { "<leader>f",  group = "Find" },
+  -- groups
+  { "<leader>f", group = "Find" },
+  { "<leader>v", group = "Git" },
+  { "<leader>l", group = "LSP" },
 }
-
 
 wk.add(mapping)
