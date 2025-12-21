@@ -4,4 +4,5 @@ font-family-italic = Monaspace Argon Var Regular Medium Italic
 font-family-bold-italic = Monaspace Argon Var Regular Bold Italic
 theme = catppuccin-macchiato.conf
 keybind = super+shift+D=new_split:down
+window-padding-color = extend
 macos-icon = glass

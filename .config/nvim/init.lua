@@ -5,5 +5,6 @@ require('config.lazy')
 require('config.colorscheme')
 require('config.settings')
 require('config.key-mapping')
+require('config.autocmd')
 
-vim.lsp.enable({ "gopls" })
+vim.lsp.enable({ "gopls", "luals", "tailwindcss", "templ", "vtsls", "vue" })
