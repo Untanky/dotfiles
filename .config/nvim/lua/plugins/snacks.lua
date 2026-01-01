@@ -77,7 +77,7 @@ return {
     { "gd", function() Snacks.picker.lsp_definitions() end, desc = "LSP: Definitions" },
     { "gD", function() Snacks.picker.lsp_declarations() end, desc = "LSP: Workspace Symbols" },
     { "gI", function() Snacks.picker.lsp_implementations() end, desc = "LSP: Implementations" },
-    { "gy", function() Snacks.picker.lsp_type_defintions() end, desc = "LSP: Type Definitions" },
+    { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "LSP: Type Definitions" },
     { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "LSP: Document Symbols" },
     { "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP: Workspace Symbols" },
   },
