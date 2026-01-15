@@ -3,7 +3,7 @@ return {
   name = "Gitsigns",
   opts = {
     numhl = true,
-    word_diff = truet ,
+    word_diff = true,
     current_line_blame = true,
     current_line_blame_opts = {
       delay = 250,

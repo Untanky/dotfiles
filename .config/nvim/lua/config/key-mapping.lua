@@ -11,6 +11,13 @@ local mapping = {
   -- groups
   { "<leader>f", group = "Find" },
   { "<leader>v", group = "Git" },
+  { "<leader>vh", group = "Git hunks" },
+  { "<leader>vhn", "<cmd>Gitsigns next_hunk<cr>", desc = "Go to next git hunk" },
+  { "<leader>vhp", "<cmd>Gitsigns prev_hunk<cr>", desc = "Go to previous git hunk" },
+  { "<leader>vhk", "<cmd>Gitsigns preview_hunk<cr>", desc = "Show hunk div in floating window" },
+  { "<leader>vha", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage hunk" },
+  { "<leader>vhr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset hunk" },
+  -- { "<leader>vha", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage hunk" },
   { "<leader>l", group = "LSP" },
 }
 
@@ -26,13 +33,6 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
     vim.b[bufnr].lsp_mappings_set = true
 
     local mappings = {
-      -- { 'gd',         vim.lsp.buf.definition,       desc = 'Goto Definition' },
-      -- { 'gD',         vim.lsp.buf.declaration,      desc = 'Goto Declaration' },
-      -- { 'gi',         vim.lsp.buf.implementation,   desc = 'Goto Implementation' },
-      -- { 'gt',         vim.lsp.buf.type_definition,  desc = 'Goto Type Definition' },
-      -- { 'gr',         vim.lsp.buf.references,       desc = 'Goto References' },
-      -- { 'K',          vim.lsp.buf.hover,            desc = 'Hover Documentation' },
-      -- { '<C-k>',      vim.lsp.buf.signature_help,   desc = 'Signature Documentation' },
       { '<leader>l',  group = "LSP" },
       { '<leader>la', vim.lsp.buf.code_action,      desc = 'Code Action' },
       { '<leader>lr', vim.lsp.buf.rename,           desc = 'Rename' },

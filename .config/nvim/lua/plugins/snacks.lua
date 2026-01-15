@@ -35,12 +35,30 @@ local vscode_layout = {
 
 return {
   "folke/snacks.nvim",
+  lazy = false,
   ---@type snacks.Config
   opts = {
-    explorer = {
-      -- your explorer configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+    dashboard = {
+      sections = {
+        { section = "header" },
+        { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+        { section = "startup" },
+      },
+    },
+    explorer = {},
+    indent = {
+      indent = {
+        enabled = false,
+      },
+      chunk = {
+        enabled = true,
+        char = {
+          corner_top = "╭",
+          corner_bottom = "╰",
+        },
+      },
     },
     picker = {
       sources = {
@@ -50,9 +68,10 @@ return {
         explorer = {
           -- your explorer picker configuration comes here
           -- or leave it empty to use the default settings
-        }
-      }
+        },
+      },
     },
+    scroll = {},
   },
   keys = {
     -- explorer
