@@ -45,7 +45,7 @@ bindkey '^[[B' history-substring-search-downd
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-export PATH="$PATH:/Users/lukas/.local/bin:$(go env GOPATH)/bin"
+export PATH="$PATH:/Users/lukas/.local/bin:$(go env GOPATH)/bin:/opt/homebrew/bin"
 
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
