@@ -4,15 +4,16 @@
 [core]
 	editor = nvim
 [diff]
-	tool = vscode
+	tool = nvimdiff
 	algorithm = histogram
-[difftool "vscode"]
-	cmd = "code --wait --diff  "
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
-	tool = vscode
-	conflictstyle = diff3
-[mergetool "vscode"]
-	cmd = "code --wait "
+	tool = nvimdiff 
+	conflictstyle = zdiff3
+[mergetool "nvimdiff"]
+  prompt = false
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" \"$BASE\""
 [color]
 	ui = auto
 [push]
@@ -22,3 +23,12 @@
 	autocorrect = 1
 [pull]
 	ff = only
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[fetch]
+	prune = true
+[rebase]
+	autoStash = true
+
