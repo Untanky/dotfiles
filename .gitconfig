@@ -2,7 +2,8 @@
   email = 22548727+Untanky@users.noreply.github.com
   name = Lukas Grimm
 [core]
-	editor = nvim
+  editor = nvim
+  excludesFile = "~/.gitignore"
 [diff]
 	tool = nvimdiff
 	algorithm = histogram
