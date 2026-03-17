@@ -7,4 +7,4 @@ require('config.settings')
 require('config.key-mapping')
 require('config.autocmd')
 
-vim.lsp.enable({ "gopls", "luals", "nixd", "tailwindcss", "html", "templ", "vtsls", "vue" })
+vim.lsp.enable({ "gopls", "luals", "nixd", "tailwindcss", "html", "templ", "terraform", "vtsls", "vue", "python" })
