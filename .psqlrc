@@ -1,0 +1,27 @@
+-- Always show query timing
+\timing on
+
+-- NULLs are visually distinct from empty strings
+\pset null '[null]'
+
+\setenv PAGER less
+\setenv LESS '-iMSx4 -FX'
+\pset pager on
+
+-- Pretty borders and aligned output
+\pset border 2
+\pset linestyle unicode
+
+-- History settings: more entries, ignore dupes
+\set HISTSIZE 5000
+\set HISTCONTROL ignoredups
+\set HISTFILE ~/.psql_history-:DBNAME
+
+-- Don't abort the session on errors inside scripts
+\set ON_ERROR_STOP off
+-- but rollback on error inside transactions:
+\set ON_ERROR_ROLLBACK interactive
+
+-- Show which database/user you're connected to in the prompt
+\set PROMPT1 '%[%033[32m%]%n%[%033[0m%]@%[%033[31m%]%m%[%033[0m%]/%[%033[33m%]%/%[%033[0m%]%[%033[34m%]%x%[%033[0m%]$ '
+\set PROMPT2 '%R$ '
