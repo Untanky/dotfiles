@@ -7,7 +7,7 @@ font-feature = "ss02"
 font-feature = "ss03"
 font-feature = "ss04"
 font-feature = "liga"
-theme = catppuccin-macchiato.conf
+theme = "Catppuccin Mocha"
 keybind = super+shift+D=new_split:down
 macos-icon = glass
 cursor-style = bar
